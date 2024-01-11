@@ -1,9 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	// let calendarArray: Array<{data: string, contr: number}> = [];
-	let dateArray1: Array<{ data: string; contr: number }> = [];
-	// let test: Array<{data: string, contr: number}> = []
+	let dataArray: Array<{ data: string; contr: number }> = [];
 	const months: Array<string> = [
 		'Янв',
 		'Фев',
@@ -49,9 +47,6 @@
 	}
 
 	function reorderArray(arr: string[], indexes: number[]): string[] {
-		console.log(arr);
-		console.log(indexes);
-
 		const reorderedArray: string[] = [];
 		indexes.map((index) => {
 			reorderedArray.push(arr[index - 1]);
@@ -77,7 +72,7 @@
 			});
 		});
 
-		dateArray1 = dateArray;
+		dataArray = dateArray;
 		const currDate = dateArray.slice(-1)[0].data;
 		const monthOrder = getMonthOrder(currDate);
 
@@ -100,7 +95,7 @@
 		<div class="day"></div>
 		<div class="day"></div>
 
-		{#each dateArray1 as item, index}
+		{#each dataArray   as item, index}
 			<div
 				class="item tooltip {item.contr > 30
 					? 'item-color5'
@@ -177,13 +172,12 @@
 		grid-template-rows: repeat(7, auto);
 		grid-auto-flow: column;
 		gap: 2px;
-	margin-top: 5px;
+	  margin-top: 5px;
 	}
 
 	.item {
 		width: 15px;
 		height: 15px;
-
 		border: 1px solid transparent;
 	}
 	.item-color1 {
@@ -208,7 +202,7 @@
 	.day {
 		width: 15px;
 		height: 15px;
-    	margin-right: 5px;
+    margin-right: 5px;
 	}
 	.day-title {
 		font-size: 12px;
